@@ -17,16 +17,17 @@ public class AnimalTest {
     }
 
     @Test
-    public void testPrintSoundCatUsingSpy() {
-        Animal animal = new Animal();
-        animal.setAnimalType("dog");
-        Animal cat = Mockito.spy(animal);
-        when(cat.getAnimalType()).thenReturn("cat");
-        assertEquals("Unknown animal sound", cat.makeSound());
+    public void testSoundUsingSpy() {
+        Animal dog = new Animal();
+        dog.setAnimalType("dog");
+        Animal spyDog = Mockito.spy(dog);
+        when(spyDog.getAnimalType()).thenReturn("bird");
+        assertEquals("Woof! Woof!", dog.makeSound());
+        assertEquals("Unknown animal sound", spyDog.makeSound());
     }
 
     @Test
-    public void testPrintSoundCatUsingMock() {
+    public void testSoundCatUsingMock() {
         Animal cat = Mockito.mock(Animal.class);
         when(cat.makeSound()).thenReturn("Meow, meow");
         when(cat.getAnimalType()).thenReturn("cat");
